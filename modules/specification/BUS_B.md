@@ -1,5 +1,5 @@
-# BUS_A
-
+# BUS_B
+BUS_Aとおなじようにやってください．基本的に信号線は教科書どおりにすれば間違いないです．
 ## 信号線
 
 * input
@@ -23,20 +23,10 @@ MDR_A_latchがハイでMDR->out.
 
 IR_latch=0で↑のoutはBUS_A_OUT．=1だと出力先がto_IRになります．
 
-
 ---
-## 完成
-
+##完成
+ここに完成したモジュールのコンポーネント宣言をおいてください．
 
 ```vhdl
-component BUS_A  
-port(GRA_latch : in std_logic;
-  GR_O_A: in std_logic_vector(15 downto 0);
-  MDR_A_latch : in std_logic;
-  MDR_O_A: in std_logic_vector(15 downto 0);
-  IR_latch : in std_logic;
-  BUS_A_OUT : out std_logic_vector(15 downto 0) bus;
-  to_IR : out std_logic_vector(15 downto 0) bus
-);
-end component;
+
 ```
