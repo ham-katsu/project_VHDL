@@ -1,0 +1,48 @@
+## a = sin(x) -> a := GR8, x:=GR0
+calc_sine	START
+
+		LAD	GR5,0
+		LAD	GR7,1
+		ADD	GR5,GR0
+
+		LAD	GR4,3
+		CALL	kaijyo
+		DIV	GR7,GR2
+		CALL 	n_jyou
+		MLT	GR7,GR2
+		SUB     GR5,GR7
+		
+		LAD	GR7,1
+		LAD	GR4,5
+		CALL	kaijyo
+		DIV	GR7,GR2
+		CALL 	n_jyou
+		MLT	GR7,GR2
+		ADD     GR5,GR7
+						
+		END
+
+
+## a = n! -> a := GR2, n := GR4
+ 
+kaijyo		LAD 	GR2,1
+		LAD     GR3,1
+		LAD	GR6,1
+loop_!		MLT	GR2,GR3
+		ADD	GR3,GR6
+		CPA	GR4,GR3
+		JZE	quit_!
+		JMP	loop_!
+quit_!		RET		
+
+## a = x^n -> a := GR2, x:=GR0, n:=GR1 
+
+n_jyou		LAD 	GR2,1
+		LAD	GR6,1
+loop_n		MLT	GR2, GR0
+		ADD	GR3,GR6
+		CPA 	GR3,GR1
+		JZE 	n_jyou_quit
+		JMP 	loop_n
+                	
+n_jyou_quit	RET	
