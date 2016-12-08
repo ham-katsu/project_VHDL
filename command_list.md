@@ -5,16 +5,16 @@
 |ADD  |r,r  | #10rr |------|tk|
 |ADD  |r,adr| #11r0 |adress|tk|
 |SUB  |r,r  | #13rr |------|tk|
-|LAD  |r,adr| #20r0 |adress|tk|
+|LAD  |r,adr| #20r0 |adress|n done|
 |CALL |adr  | #6000 |adress|m|
-|DIV  |r,r  | #50rr |------|n|
-|MLT  |r,r  | #51rr |------|n|
+|DIV  |r,r  | #50rr |------|n done|
+|MLT  |r,r  | #51rr |------|n done|
 |CPA  |r,r  | #30rr |------|n|
 |JZE  |adr  | #4000 |adress|m|
-|JMP  |adr  | #4100 |adress|m|
+|JMP  |adr  | #4100 |adress|n done|
 |RET  |-----| #6300 |------||
 |LD   |r,adr| #21r0 |adress|done|
 |LD   |r,r  | #24rr |------|done|
 |STR  |r,adr| #22r0 |adress|tk|
 |HALT |-----| #6400 |------||
-|AND  |r,r  | #70rr |------|n|
+|AND  |r,r  | #70rr |------|n done|
