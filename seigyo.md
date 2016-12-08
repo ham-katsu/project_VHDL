@@ -58,5 +58,39 @@
    5. MDR s_mdi
    
    
+# LDadr(#2100)
+
+### 1
+
+1. basAのMDR_latch
+
+2. ALU(101)
+
+3. MAR_latch
+
+### 2
+
+1. read
+
+2. MDR_latch      
+
+3. MDR s_mdi
+
+
+### 3
+
+1. alu(110)
+
+2. GR_latch
+
+# LDr(#2400)
+
+1. ALU(110)
+
+2. GR_latch
+
+
+
+   
    
    
