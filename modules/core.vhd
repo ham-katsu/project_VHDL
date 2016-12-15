@@ -115,6 +115,22 @@ component stack
     );
 end component;
 
+component clock 
+    port(
+        clk: out std_logic
+    );
+end clock;
+
+component ALU 
+    port(latch : in std_logic;
+   	BUS_C_OUT: inout std_logic_vector(15 downto 0);
+	OP : in std_logic_vector(2 downto 0);
+	CLK : in std_logic;
+    	A_IN : in std_logic_vector(15 downto 0);
+	B_IN : in std_logic_vector(15 downto 0);
+	zero : out std_logic
+    );
+end ALU;
 type STATE is (F1, F2, F3, exc, done);
 signal current_state : STATE
 begin

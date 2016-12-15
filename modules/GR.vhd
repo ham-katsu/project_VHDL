@@ -8,6 +8,7 @@ entity GR is
     port(latch : in std_logic;
         From_BUS_C: in std_logic_vector(15 downto 0);
 	OP : in std_logic_vector(2 downto 0);
+	sel_A, sel_B : in std_logic_vector(2 downto 0);
 	CLK : in std_logic;
         BUS_A_OUT : out std_logic_vector(15 downto 0);
 	BUS_B_OUT : out std_logic_vector(15 downto 0)
@@ -41,19 +42,30 @@ begin
 		    when "111" => gr7 <= From_BUS_C ;
 		    when others => gr1<= "ZZZZZZZZZZZZZZZZ";
 		end case;
-	    else
-		case OP is
-		    when "000" => BUS_A_OUT <= gr0; BUS_B_OUT <= gr0;
-		    when "001" => BUS_A_OUT <= gr1; BUS_B_OUT <= gr1;
-		    when "010" => BUS_A_OUT <= gr2; BUS_B_OUT <= gr2;
-		    when "011" => BUS_A_OUT <= gr3; BUS_B_OUT <= gr3;
-		    when "100" => BUS_A_OUT <= gr4; BUS_B_OUT <= gr4;
-		    when "101" => BUS_A_OUT <= gr5; BUS_B_OUT <= gr5;
-		    when "110" => BUS_A_OUT <= gr6; BUS_B_OUT <= gr6;
-		    when "111" => BUS_A_OUT <= gr7; BUS_B_OUT <= gr7;
-		    when others => BUS_A_OUT<= "ZZZZZZZZZZZZZZZZ"; BUS_B_OUT<= "ZZZZZZZZZZZZZZZZ"; 
-		end case;
 	    end if;
+		case sel_A is
+		    when "000" => BUS_A_OUT <= gr0;
+		    when "001" => BUS_A_OUT <= gr1;
+		    when "010" => BUS_A_OUT <= gr2;
+		    when "011" => BUS_A_OUT <= gr3;
+		    when "100" => BUS_A_OUT <= gr4;
+		    when "101" => BUS_A_OUT <= gr5;
+		    when "110" => BUS_A_OUT <= gr6;
+		    when "111" => BUS_A_OUT <= gr7;
+		    when others => BUS_A_OUT<= "ZZZZZZZZZZZZZZZZ"; 
+		end case;
+
+		case sel_B is
+		    when "000" => BUS_B_OUT <= gr0;
+		    when "001" => BUS_B_OUT <= gr1;
+		    when "010" => BUS_B_OUT <= gr2;
+		    when "011" => BUS_B_OUT <= gr3;
+		    when "100" => BUS_B_OUT <= gr4;
+		    when "101" => BUS_B_OUT <= gr5;
+		    when "110" => BUS_B_OUT <= gr6;
+		    when "111" => BUS_B_OUT <= gr7;
+		    when others => BUS_B_OUT<= "ZZZZZZZZZZZZZZZZ"; 
+		end case;
     end if;
     end process;
 end RTL;
