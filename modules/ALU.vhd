@@ -18,10 +18,10 @@ architecture RTL of ALU is
 component MPU
     port(A_in: in std_logic_vector(15 downto 0);
          OP: in std_logic_vector(2 downto 0);
-         CLK: in std_logic_vector;
+         CLK: in std_logic;
          B_in: in std_logic_vector(15 downto 0);
-         zero: out std_logic_vector;
-         C_OUT: out std_logic_vector(15 downto 0);
+         zero: out std_logic;
+         C_OUT: out std_logic_vector(15 downto 0)
 );
 end component;
 
@@ -59,7 +59,7 @@ begin
                     MPU_A <= A_IN;
                     MPU_OP <= OP;
                     MPU_B <= B_IN;
-                    MPU_z <= zero;
+                    zero <= MPU_Z;
                
         end case;
 	end if;

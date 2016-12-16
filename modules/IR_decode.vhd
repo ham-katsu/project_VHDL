@@ -21,7 +21,7 @@ entity decode is
 	STR : out std_logic;
 	HALT : out std_logic;
 	AND_logic : out std_logic;
-	GR1 : out std_logic_vector(2 downto 0)
+	GR1 : out std_logic_vector(2 downto 0);
 	GR2 : out std_logic_vector(2 downto 0)
 );
 end decode;
@@ -29,8 +29,8 @@ end decode;
 architecture RTL of decode is
 	
 	begin
-		GR1 <= BusA(6 downto 4);
-		GR2 <= BusA(2 downto 0); 
+		GR1 <= BusA_o_IR(6 downto 4);
+		GR2 <= BusA_o_IR(2 downto 0); 
 		process(BusA_o_IR)
 		variable OP : std_logic_vector(7 downto 0);	
 		begin

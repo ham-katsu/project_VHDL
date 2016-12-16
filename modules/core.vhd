@@ -18,8 +18,8 @@ architecture RTL of TOY_CPU is
           MDR_A_latch : in std_logic;
           MDR_O_A: in std_logic_vector(15 downto 0);
           IR_latch : in std_logic;
-          BUS_A_OUT : out std_logic_vector(15 downto 0) bus;
-          to_IR : out std_logic_vector(15 downto 0) bus
+          BUS_A_OUT : out std_logic_vector(15 downto 0);
+          to_IR : out std_logic_vector(15 downto 0) 
       );
   end component;
   component BUS_B

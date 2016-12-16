@@ -9,38 +9,38 @@ z2
 cModel Technology
 dC:/altera/14.1
 Ealu
-Z0 w1480580677
+Z0 w1481862297
 Z1 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z2 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z5 dC:/Users/ics02/project_VHDL
-Z6 8C:/Users/ics02/project_VHDL/modules/ALU.vhd
-Z7 FC:/Users/ics02/project_VHDL/modules/ALU.vhd
+Z5 dC:/Users/ham_k/Documents/GitHub/project_VHDL
+Z6 8C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\ALU.vhd
+Z7 FC:\Users\ham_k\Documents\GitHub\project_VHDL\modules\ALU.vhd
 l0
-L7
-VEjCiRjS<b@zMB`;ogPT[60
-!s100 LU=FOQ`Fco0X7:K:OMMBX3
-Z8 OV;C;10.3c;59
+L5
+V6:YJ`159W5C3FRALf:_[13
+!s100 bO5H72Lgn9TFn7<?eaM^=0
+Z8 OV;C;10.5b;63
 32
-Z9 !s110 1480580681
+Z9 !s110 1481862316
 !i10b 1
-Z10 !s108 1480580681.377000
-Z11 !s90 -reportprogress|300|-work|projectA|-2002|-explicit|-stats=none|C:/Users/ics02/project_VHDL/modules/ALU.vhd|
-Z12 !s107 C:/Users/ics02/project_VHDL/modules/ALU.vhd|
+Z10 !s108 1481862316.000000
+Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\ALU.vhd|
+Z12 !s107 C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\ALU.vhd|
 !i113 1
-Z13 o-work projectA -2002 -explicit
-Z14 tExplicit 1
+Z13 o-work work -2002 -explicit
+Z14 tExplicit 1 CvgOpt 0
 Artl
 R1
 R2
 R3
 R4
-DEx4 work 3 alu 0 22 EjCiRjS<b@zMB`;ogPT[60
-l19
-L18
-VIVk9gUoWUST@H7QbT<dNO1
-!s100 73hnS00jC0mS=KA9S8a:R0
+DEx4 work 3 alu 0 22 6:YJ`159W5C3FRALf:_[13
+l34
+L17
+VhMUA@?]b^:KH=KVDn:FO=2
+!s100 Hd=AfhJAZjoWo4E0mH>c?1
 R8
 32
 R9
@@ -48,6 +48,455 @@ R9
 R10
 R11
 R12
+!i113 1
+R13
+R14
+Ebus_a
+Z15 w1479313506
+R1
+R2
+R3
+R4
+R5
+Z16 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_a.vhd
+Z17 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_a.vhd
+l0
+L6
+VhN3h<RDYDXOHGi=WBkYeF0
+!s100 JNXh9`Y9AifFHW5`ojaRb3
+R8
+32
+Z18 !s110 1481862051
+!i10b 1
+Z19 !s108 1481862051.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_a.vhd|
+Z21 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_a.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 5 bus_a 0 22 hN3h<RDYDXOHGi=WBkYeF0
+l19
+L17
+V`KKD6XA35E3zS8Md^BN_d1
+!s100 F<m6NYcF<;D0Gl67kPj063
+R8
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R13
+R14
+Ebus_b
+Z22 w1479632401
+R1
+R2
+R3
+R4
+R5
+Z23 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_b.vhd
+Z24 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_b.vhd
+l0
+L6
+VV<2VP2Q`0KLHOG2E=5i<Z3
+!s100 b[EYz;hnl:;oe=^O^@6T62
+R8
+32
+R18
+!i10b 1
+R19
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_b.vhd|
+Z26 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/bus_b.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 5 bus_b 0 22 V<2VP2Q`0KLHOG2E=5i<Z3
+l27
+L25
+V`Ub9=OC_;DizknYBKJbY^3
+!s100 1@_o=4IdQF_K]9j>DTPB;3
+R8
+32
+R18
+!i10b 1
+R19
+R25
+R26
+!i113 1
+R13
+R14
+Edecode
+Z27 w1481862424
+R1
+R2
+R3
+R4
+R5
+Z28 8C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\IR_decode.vhd
+Z29 FC:\Users\ham_k\Documents\GitHub\project_VHDL\modules\IR_decode.vhd
+l0
+L5
+VfJikogTTgUm_]_6hkGMgn1
+!s100 k0>4gmK09gbKEo9a15U=A1
+R8
+32
+Z30 !s110 1481862426
+!i10b 1
+Z31 !s108 1481862425.000000
+Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\IR_decode.vhd|
+Z33 !s107 C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\IR_decode.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 6 decode 0 22 fJikogTTgUm_]_6hkGMgn1
+l31
+L29
+VViTY=XLVL]N01@BBoZGa:1
+!s100 0YzoBAoV3ScG@5D6RRh?i2
+R8
+32
+R30
+!i10b 1
+R31
+R32
+R33
+!i113 1
+R13
+R14
+Egr
+Z34 w1481861683
+R1
+R2
+R3
+R4
+R5
+Z35 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/GR.vhd
+Z36 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/GR.vhd
+l0
+L7
+V9gY^bAGRD<MT;56L_MdFZ2
+!s100 Ec^EF6>?diGeT6m1Xjf8;0
+R8
+32
+R18
+!i10b 1
+R19
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/GR.vhd|
+Z38 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/GR.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 2 gr 0 22 9gY^bAGRD<MT;56L_MdFZ2
+l28
+L18
+Vb6=;UIjg`2[hL`BB`k4eZ3
+!s100 KkR9Tc^n3fMLk1dk4JQIG3
+R8
+32
+R18
+!i10b 1
+R19
+R37
+R38
+!i113 1
+R13
+R14
+Emar
+R34
+R1
+R2
+R3
+R4
+R5
+Z39 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MAR.vhd
+Z40 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MAR.vhd
+l0
+L6
+VzE5Kg=_]@dj3H7]m2g@zW1
+!s100 V97hje:]RINGG<zU1UbJm2
+R8
+32
+Z41 !s110 1481862052
+!i10b 1
+Z42 !s108 1481862052.000000
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MAR.vhd|
+Z44 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MAR.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 3 mar 0 22 zE5Kg=_]@dj3H7]m2g@zW1
+l17
+L15
+V<=DkkGBWfCX7h1QLVl0;c2
+!s100 go?18EiJQVUB];i>`6:IV3
+R8
+32
+R41
+!i10b 1
+R42
+R43
+R44
+!i113 1
+R13
+R14
+Emdr
+R34
+R3
+R4
+R5
+Z45 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MDR.vhd
+Z46 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MDR.vhd
+l0
+L4
+VRlPhZLHG1iOGLA`V5Z4^R2
+!s100 =P<8hdl;O7O:JWfG>ARTH2
+R8
+32
+R41
+!i10b 1
+R42
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MDR.vhd|
+Z48 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MDR.vhd|
+!i113 1
+R13
+R14
+Artl
+R3
+R4
+DEx4 work 3 mdr 0 22 RlPhZLHG1iOGLA`V5Z4^R2
+l12
+L10
+V`Cd<_Cb<bf0@5Qk>=Ph?>1
+!s100 SSZdd?_F6YB4`IAj7]>bl1
+R8
+32
+R41
+!i10b 1
+R42
+R47
+R48
+!i113 1
+R13
+R14
+Ememory
+Z49 w1481862659
+R1
+R2
+R3
+R4
+R5
+Z50 8C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\mem_test.vhd
+Z51 FC:\Users\ham_k\Documents\GitHub\project_VHDL\modules\mem_test.vhd
+l0
+L5
+VMO>UZnSm8Ji8QI=NF[VWE3
+!s100 ]c]M<[Hk=A3kI4>0amWQz0
+R8
+32
+Z52 !s110 1481862660
+!i10b 1
+Z53 !s108 1481862660.000000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\mem_test.vhd|
+Z55 !s107 C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\mem_test.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+Z56 DEx4 work 6 memory 0 22 MO>UZnSm8Ji8QI=NF[VWE3
+l25
+L18
+V[XO2FP<YB=[QTFo@zJ_bg2
+!s100 05`=L]3al:idlHECk9jIm1
+R8
+32
+R52
+!i10b 1
+R53
+R54
+R55
+!i113 1
+R13
+R14
+Empu2
+R34
+R1
+R2
+R3
+R4
+R5
+Z57 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MPU2.vhd
+Z58 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MPU2.vhd
+l0
+L6
+V>]bX8zgIWX_@cWXz1lQd42
+!s100 z2lW3_dn<W6S>AZNHUK@a3
+R8
+32
+R41
+!i10b 1
+R42
+Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MPU2.vhd|
+Z60 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/MPU2.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 4 mpu2 0 22 >]bX8zgIWX_@cWXz1lQd42
+l24
+L18
+Vla=NKN4I:Qm[V>6R<WkZ:3
+!s100 O<?JOzW`jF4Cl@CQ;zR<20
+R8
+32
+R41
+!i10b 1
+R42
+R59
+R60
+!i113 1
+R13
+R14
+Epr
+R34
+R1
+R2
+R3
+R4
+R5
+Z61 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/PR.vhd
+Z62 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/PR.vhd
+l0
+L8
+Vk0l^L7GV^DCG4WCo?KNG]2
+!s100 ^[_VP5G4cbT3Mmm_EkgBj2
+R8
+32
+Z63 !s110 1481862053
+!i10b 1
+Z64 !s108 1481862053.000000
+Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/PR.vhd|
+Z66 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/PR.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 2 pr 0 22 k0l^L7GV^DCG4WCo?KNG]2
+l22
+L18
+VaP`6_SJzG@G?1a<94g1hh1
+!s100 P^;lT_nMVnMB_VQP2YXMP3
+R8
+32
+R63
+!i10b 1
+R64
+R65
+R66
+!i113 1
+R13
+R14
+Estack
+R22
+R1
+R2
+R3
+R4
+R5
+Z67 8C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/stack.vhd
+Z68 FC:/Users/ham_k/Documents/GitHub/project_VHDL/modules/stack.vhd
+l0
+L6
+VXXWCP8k7lcOFU]^<mYkXk1
+!s100 H[D30;dEY8m_moc:IoQ<R3
+R8
+32
+Z69 !s110 1481862050
+!i10b 1
+Z70 !s108 1481862050.000000
+Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/stack.vhd|
+Z72 !s107 C:/Users/ham_k/Documents/GitHub/project_VHDL/modules/stack.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+DEx4 work 5 stack 0 22 XXWCP8k7lcOFU]^<mYkXk1
+l22
+L20
+VVid[Ni?jz<nCJ?82E=3S71
+!s100 @[lYaToe@NcVizc27]njG0
+R8
+32
+R69
+!i10b 1
+R70
+R71
+R72
+!i113 1
+R13
+R14
+Etoy_cpu
+R34
+R1
+R2
+R3
+R4
+R5
+8C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\core.vhd
+FC:\Users\ham_k\Documents\GitHub\project_VHDL\modules\core.vhd
+l0
+L8
+V1eB`o5mE0CL7F1@36LD450
+!s100 f^Vnl>9_XILPol[Pk8`]23
+R8
+32
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\core.vhd|
+!s107 C:\Users\ham_k\Documents\GitHub\project_VHDL\modules\core.vhd|
 !i113 1
 R13
 R14
