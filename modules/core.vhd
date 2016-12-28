@@ -133,6 +133,8 @@ component ALU
 end ALU;
 type STATE is (F1, F2, F3, exc, done);
 signal current_state : STATE
+
+
 begin
   process(CLK) begin
     if (CLK'event and CLK = '1') then
