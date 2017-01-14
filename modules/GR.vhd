@@ -1,24 +1,22 @@
--- mizuhara
--- GR 
 library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
-entity GR is 
+entity GR is
     port(latch : in std_logic;
         From_BUS_C: in std_logic_vector(15 downto 0);
-	OP : in std_logic_vector(2 downto 0);
-	sel_A, sel_B : in std_logic_vector(2 downto 0);
-	CLK : in std_logic;
+        OP : in std_logic_vector(2 downto 0);
+        sel_A, sel_B : in std_logic_vector(2 downto 0);
+        CLK : in std_logic;
         BUS_A_OUT : out std_logic_vector(15 downto 0);
-	BUS_B_OUT : out std_logic_vector(15 downto 0);
-	 GR0_IN : in std_logic_vector(15 downto 0);
+        BUS_B_OUT : out std_logic_vector(15 downto 0);
+        GR0_IN : in std_logic_vector(15 downto 0);
         GR0_OUT : out std_logic_vector(15 downto 0);
         in_sw : in std_logic
     );
 end GR;
 
-architecture RTL of GR is 
+architecture RTL of GR is
 signal gr0 : std_logic_vector(15 downto 0);
 signal gr1 : std_logic_vector(15 downto 0);
 signal gr2 : std_logic_vector(15 downto 0);
@@ -29,21 +27,10 @@ signal gr6 : std_logic_vector(15 downto 0);
 signal gr7 : std_logic_vector(15 downto 0);
 
 begin
-    process(CLK)
-      begin
-        
-        if(CLK'event and CLK = '1') then
-	    if (in_sw = '1') then
-                gr0 <= GR0_IN;
-            end if;
-        end if;
-           
-    end process;
-	
-    process(CLK)
+  process(CLK)
 	begin
 	if(CLK'event and CLK = '1') then
-	    if (latch = '1') then
+	    if (latch = '1'and in_sw = '0') then
 		case OP is
 		    when "000" => gr0 <= From_BUS_C ;
 		    when "001" => gr1 <= From_BUS_C ;
@@ -65,7 +52,7 @@ begin
 		    when "101" => BUS_A_OUT <= gr5;
 		    when "110" => BUS_A_OUT <= gr6;
 		    when "111" => BUS_A_OUT <= gr7;
-		    when others => BUS_A_OUT<= "ZZZZZZZZZZZZZZZZ"; 
+		    when others => BUS_A_OUT<= "ZZZZZZZZZZZZZZZZ";
 		end case;
 
 		case sel_B is
@@ -77,8 +64,12 @@ begin
 		    when "101" => BUS_B_OUT <= gr5;
 		    when "110" => BUS_B_OUT <= gr6;
 		    when "111" => BUS_B_OUT <= gr7;
-		    when others => BUS_B_OUT<= "ZZZZZZZZZZZZZZZZ"; 
+		    when others => BUS_B_OUT<= "ZZZZZZZZZZZZZZZZ";
 		end case;
+            if (in_sw = '1' and latch = '0') then
+                gr0 <= GR0_IN;
+            end if;
+
     end if;
     end process;
 

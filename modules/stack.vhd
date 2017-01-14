@@ -14,11 +14,12 @@ entity stack is
 	S_sdi : in std_logic;
 	SP_latch : in std_logic;
 	SDR_latch : in std_logic;
-	CLK : in std_logic		
+	CLK : in std_logic
     );
 end stack;
-architecture RTL of stack is 
-    signal buf_SP , buf_SDR : std_logic_vector(15 downto 0);
+architecture RTL of stack is
+    signal buf_SP: std_logic_vector(15 downto 0) := x"7F";
+    signal buf_SDR: std_logic_vector(15 downto 0);
     begin
     process(CLK) begin
         if (CLK'event and CLK = '1') then
@@ -47,4 +48,3 @@ architecture RTL of stack is
     SDR_o_B <= buf_SDR;
 
 end RTL;
- 		    
