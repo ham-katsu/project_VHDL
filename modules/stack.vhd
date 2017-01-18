@@ -14,7 +14,8 @@ entity stack is
 	S_sdi : in std_logic;
 	SP_latch : in std_logic;
 	SDR_latch : in std_logic;
-	CLK : in std_logic
+	CLK : in std_logic;
+	s_inc : in std_logic
     );
 end stack;
 architecture RTL of stack is
@@ -28,6 +29,8 @@ architecture RTL of stack is
 		buf_SP <= buf_SP - 1;
 	    elsif (SP_latch  = '1') then
 		buf_SP <= BUS_C;
+	    elsif (s_inc = '1') then
+		buf_SP <= buf_SP + 1;
 	    end if;
 
 	-- stack
