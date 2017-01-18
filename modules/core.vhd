@@ -1,10 +1,6 @@
 --core
--- R.mizuhara
-
 --todo
 --add state
-
-
 
 library ieee;
   use ieee.std_logic_1164.all;
@@ -148,17 +144,17 @@ component GR
          );
 end GR;
 
-type STATE is (F0,F1, F2, F3, STR1, STR2, STR3, STR_END, SUBadr1, SUBadr2, SUBadr3, SUBadr_END, ADDadr1, ADDadr2, ADDadr3, ADDadr_END, SUBr1, SUBr_END, ADDr1, ADDr_END);
-signal current_state : STATE
-signal next_state : STATE
+type STATE is (F0,F1, F2, F3, exc, STR1, STR2, STR3, SUBadr1, SUBadr2, SUBadr3, ADDadr1, ADDadr2, ADDadr3, SUBr1, ADDr1,  LDadd1, LDadd2, LDadd3,LDr1,DIV1,MLT1,AND1,LAD1,JMP1,JZE,CALL1,CALL2,CALL3,RET1,RET2);
+signal current_state : STATE := F0;
+signal next_state : STATE := F0;
 signal S_ALUOUT, S_A_GA, S_B_GR, S_ALU_BA, S_ALU_BB, S_IR_BA, S_BB_PR, S_BB_MAR, S_MEM_MAR, S_MEM_MDR, S_BA_MDR, S_BB_MDR, S_MDR_MEM, S_SP_MEM, S_BB_SP, S_BB_SDR, S_MEM_SP, S_MEM_SDR : std_logic_vector(15 downto 0);
 signal S_OPofALU, S_GR1, S_GR2, S_SEL_A, S_SEL_B, S_OPofGR : std_logic_vector(2 downto 0);
 signal S_S_INC, S_GRALATCHofBA, S_MDRLATCHofBA, S_IRLATCHofBA, S_GRBLATCHofBB, S_MDRLATCHofBB, S_PRLATCHofBB, S_MARLATCHofBB, S_SPLATCHofBB, S_SDRLATCHofBB,  S_S_LATCHofALU, S_SEL_A, S_SEL_B, S_LATCHofGR, S_OPofGR, S_ZERO, S_LATCHofPR, S_P_INC, S_S_DCR, S_SP_L, S_SDR_L, S_LATCHofMAR, S_S_MDI, S_LATCHofMDR, S_READ, S_WRITE, S_STACL_SEL, S_CLOCK, S_ADDr, S_ADDadr, S_SUB, S_LAD, S_CALL, S_DIV, S_MLT, S_CPA, S_JZE, S_JMP, S_RET, S_LDr, S_LDadr, S_STR, S_HALT, S_IN_SW, S_AND_logic: std_logic;
 
 COMP_MDR : MDR port map (S_CLOCK, S_S_MDI, S_LATCHofMDR, S_ALUOUT, S_MDR_MEM, S_MEM_MDR, S_BA_MDR, S_BB_MDR);
-COMP_MAR : mar port map (S_BB_MAR, S_MEM_MAR, S_LATCHofMAR, S_MAR_ALU, S_CLOCK);
-COMP_SP : stack port map (S_MEM_SP, S_MEM_SDR, S_BB_SP, S_BB_SDR, S_S_DCR, S_SP_ALU, S_SP_MEM, S_S_MDI, S_SP_L, S_SDR_L, S_CLOCK);
-COMP_PR : PR port map (S_PR_ALU, S_P_INC, S_CLOCK, S_LATCHofPR, S_BB_PR);
+COMP_MAR : mar port map (S_BB_MAR, S_MEM_MAR, S_LATCHofMAR, S_ALUOUT, S_CLOCK);
+COMP_SP : stack port map (S_MEM_SP, S_MEM_SDR, S_BB_SP, S_BB_SDR, S_S_DCR, S_ALUOUT, S_SP_MEM, S_S_MDI, S_SP_L, S_SDR_L, S_CLOCK);
+COMP_PR : PR port map (S_ALUOUT, S_P_INC, S_CLOCK, S_LATCHofPR, S_BB_PR);
 COMP_ALU : ALU port map (S_ALUOUT, S_LATCHofALU, S_OPofALU, S_CLOCK, S_BA_ALU, S_BB_ALU, S_ZERO);
 COMP_MEM : memory port map (S_READ, S_WRITE, S_MEM_SDR, S_MEM_MDR, S_MEM_SP, S_MEM_MAR, S_STACK_SEL, S_MDR_MEM, S_CLOCK);
 COMP_BUS_A : BUS_A port map (S_GRALATCHofBA, S_GR_A, S_MDRLATCHofBA, S_BA_MDR, S_IRLATCHofBA, S_ALU_BB, S_IR_BA);
@@ -176,6 +172,16 @@ begin
 begin
   process(current_state) begin
     case current_state is
+      when F0 =>
+        S_S_INC <= '0'; S_GRALATCHofBA<= '0'; S_MDRLATCHofBA<= '0'; S_IRLATCHofBA<= '0'; S_GRBLATCHofBB<= '0';  S_MDRLATCHofBB<= '0';
+        S_PRLATCHofBB<= '0'; S_MARLATCHofBB<= '0'; S_SPLATCHofBB<= '0'; S_SDRLATCHofBB<= '0'; S_S_LATCHofALU<= '0'; S_SEL_A<= '0'; S_SEL_B,<= '0';
+        S_LATCHofGR<= '0'; S_OPofGR<= '0'; S_ZERO<= '0'; S_LATCHofPR<= '0';S_P_INC<= '0';S_S_DCR<= '0'; S_SP_L<= '0'; S_SDR_L<= '0';
+        S_LATCHofMAR<= '0'; S_S_MDI<= '0'; S_LATCHofMDR<= '0'; S_READ<= '0'; S_WRITE<= '0'; S_STACL_SEL<= '0'; S_CLOCK<= '0'; S_ADDr<= '0';S_ADDadr<= '0';S_SUB<= '0';
+        S_LAD<= '0'; S_CALL<= '0'; S_DIV<= '0'; S_MLT<= '0'; S_CPA<= '0'; S_JZE<= '0'; S_JMP<= '0'; S_RET<= '0'; S_LDr<= '0';
+        S_LDadr<= '0'; S_STR<= '0'; S_HALT<= '0'; S_IN_SW<= '0';
+        busy <= '1';
+        next_state <= F1;
+
       when F1 =>
         S_LATCHofALU <= '1';
         S_OPofALU <= "110";
@@ -246,13 +252,12 @@ begin
     current_state <= SUB1;
 
   elsif S_HALT = '1' then
-    busy <= 0;
+    busy <= '0';
   end if;
 
   when others =>
         null;
-  end case;
-
+  end case;git
 end process;
 
 process(current_state) begin
@@ -263,7 +268,6 @@ process(current_state) begin
     S_OPofALU <= "001";
     S_LATCHofMAR <= '1';
     next_state <= STR2;
-  end if;
 
   elsif current_state = STR2 then
     S_MDRLATCHofBA <= '0';
@@ -273,20 +277,13 @@ process(current_state) begin
     S_OPofALU <= "101";
     S_LATCHofMDR <= '1';
     next_state <= STR3;
-  end if;
 
   elsif current_state = STR3 then
     S_GR_A <= '0';
     S_OPofALU <= "000";
     S_LATCHofMDR <= '0';
     S_WRITE <= '1';
-    next_state <= STR_END;
-  end if;
-
-  elsif current_state = STR_END then
-    S_LATCHofALU <= '0';
-    S_WRITE <= '0';
-    next_state <= F1;
+    next_state <= F0;
   end if;
 end process;
 
@@ -298,7 +295,6 @@ process(current_state)begin
     S_OPofALU <= "001";
     S_LATCHofMAR <= '1';
     next_state <= SUBadr2;
-  end if;
 
   elsif current_state = SUBadr2 then
     S_MDRLATCHofBA <= '0';
@@ -309,7 +305,6 @@ process(current_state)begin
     S_READ <= '1';
     S_LATCHofMDR <= '1';
     next_state <= SUBadr3;
-  end if;
 
   elsif current_state = SUBadr3 then
     S_S_MDI <= '0';
@@ -319,16 +314,7 @@ process(current_state)begin
     S_MDRLATCHofBB <= '1';
     S_OPofALU <= "010";
     S_GRLATCH <= '1';
-    next_state <= SUBadr_END;
-  end if;
-
-  elsif current_state = SUBadr_END then
-    S_A_GR <= '0';
-    S_MDRLATCHofBB <= '0';
-    S_OPofALU <= "000";
-    S_GRLATCH <= '0';
-    S_LATCHofALU <= '0';
-    next_state = F1;
+    next_state <= F0;
   end if;
 end process;
 
@@ -339,16 +325,7 @@ process(current_state)begin
     S_B_GR <= '1';
     S_OPofALU <= "010";
     S_GRLATCH <= '1';
-    next_state <= SUBr_END;
-  end if;
-
-  elsif current_state = SUBr_END then
-    S_A_GR <= '0';
-    S_B_GR <= '0';
-    S_OPofALU <= "000";
-    S_GRLATCH <= '0';
-    S_LATCHofALU <= '0';
-    next_state <= F1;
+    next_state <= F0;
   end if;
 end process;
 
@@ -360,7 +337,6 @@ process(current_state)begin
     S_OPofALU <= "001";
     S_LATCHofMAR <= '1';
     next_state <= ADDadr2;
-  end if;
 
   elsif current_state = ADDadr2 then
     S_MDRLATCHofBA <= '0';
@@ -371,7 +347,6 @@ process(current_state)begin
     S_READ <= '1';
     S_LATCHofMDR <= '1';
     next_state <= ADDadr3;
-  end if;
 
   elsif current_state = ADDadr3 then
     S_S_MDI <= '0';
@@ -381,16 +356,7 @@ process(current_state)begin
     S_MDRLATCHofBB <= '1';
     S_OPofALU <= "001";
     S_GRLATCH <= '1';
-    next_state <= ADDadr_END;
-  end if;
-
-  elsif current_state = ADDadr_END then
-    S_A_GR <= '0';
-    S_MDRLATCHofBB <= '0';
-    S_OPofALU <= "000";
-    S_GRLATCH <= '0';
-    S_LATCHofALU <= '0';
-    next_state = F1;
+    next_state <= F0;
   end if;
 end process;
 
@@ -401,16 +367,7 @@ process(current_state)begin
     S_B_GR <= '1';
     S_OPofALU <= "001";
     S_GRLATCH <= '1';
-    next_state <= ADDr_END;
-  end if;
-
-  elsif current_state = ADDr_END then
-    S_A_GR <= '0';
-    S_B_GR <= '0';
-    S_OPofALU <= "000";
-    S_GRLATCH <= '0';
-    S_LATCHofALU <= '0';
-    next_state <= F1;
+    next_state <= F0;
   end if;
 end process;
 
@@ -443,15 +400,7 @@ process(current_state) begin
       S_OPofALU <= "110";
       S_MDRLATCHofBB <='1'
       S_GR_latch <= '1';
-      next_state <= LDaddEND;
-
-    elsif(current_state = LDaddEND) then
-      S_LATCHofALU <= '0'
-      S_OPofALU <= "000";
-      S_MDRLATCHofBB <='0'
-      S_GR_latch <= '0';
-      next_state <= F1;
-
+      next_state <= F0;
     end if;
 end process;
 
@@ -461,14 +410,7 @@ process(current_state) begin
   S_OPofALU <= "110";
   S_GR_latch <= '1';
   S_GRBLATCHofBB <= '1';
-  next_state <= LDr1;
-
-    elsif current_state = LDr_END then
-  S_LATCHofALU <= '0'
-  S_OPofALU <= "000";
-  S_GR_latch <= '0';
-  S_GRBLATCHofBB <= '0';
-  next_state <= LDr_END;
+  next_state <= F0;
     end if;
 end process;
 
@@ -479,7 +421,7 @@ process(current_state)
   S_GR_latch <= '1';
   S_GRALATCHofBA <= '1';
   S_GRBLATCHofBB <= '1';
-  next_state <= DIV_END;
+  next_state <= F0;
 
     elsif current_state = MLT1 then
   S_LATCHofALU <= '1'
@@ -487,15 +429,8 @@ process(current_state)
   S_GR_latch <= '1';
   S_GRALATCHofBA <= '1';
   S_GRBLATCHofBB <= '1';
-  next_state <= DIV_END;
+  next_state <= F0;
 
-    elsif current_state = DIV_END then
-  S_LATCHofALU <= '0'
-  S_OPofALU <= "000";
-  S_GR_latch <= '0';
-  S_GRALATCHofBA <= '0';
-  S_GRBLATCHofBB <= '0';
-  next_state <= F1;
     end if;
 end process;
 
@@ -506,58 +441,31 @@ process(current_state)
     S_GR_latch <= '1';
     S_GRALATCHofBA <= '1';
     S_GRALATCHofBB <= '1';
-    next_state <= AND_END;
+    next_state <= F0;
 
-  elsif current_state = AND_END then
-    S_LATCHofALU <= '0';
-    S_OPofALU <= "000";
-    S_GR_latch <= '0';
-    S_GRALATCHofBA <= '0';
-    S_GRALATCHofBB <= '0';
-    next_state <= F1;
 
   elsif current_state = LAD1 then
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     S_LATCHofMDR <= '1';
     S_GR_latch <= '1';
-    next_state <= LAD_END;
+    next_state <= F0;
 
-  elsif current_state = LAD_END then
-    S_LATCHofALU <= '0';
-    S_OPofALU <= "000";
-    S_LATCHofMDR <= '0';
-    S_GR_latch <= '0';
-    next_state <= F1;
 
   elsif current_state = JMP1 then
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     S_LATCHofPR <= '1';
     S_GR_latch <= '1';
-    next_state <= JMP_END;
+    next_state <= F0;
 
-  elsif current_state = JMP_END then
-    S_LATCHofALU <= '0';
-    S_OPofALU <= "000";
-    S_LATCHofPR <= '0';
-    S_GR_latch <= '0';
-    next_state <= JMP_END;
 
   elsif current_state = JZE then
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     S_LATCHofPR <= '1';
     S_GR_latch <= '1';
-    next_state <= JZE_END;
-
-  elsif current_state = JZE_END then
-    S_LATCHofALU <= '0';
-    S_OPofALU <= "000";
-    S_LATCHofPR <= '0';
-    S_GR_latch <= '0';
-    next_state <= JMP_END;
-
+    next_state <= F0;
   end if;
 end process;
 
@@ -591,15 +499,7 @@ process(current_state)
       S_WRITE　<= '1';
       S_MARLATCHofBB <= '1';
       S_LATCHofPR <= '1';
-      next_state <= CALL_END;
-
-    elsif current_state = CALL_END then
-      S_STACK_SEL <= '0';
-      S_LATCHofALU <= '0';
-      S_WRITE　<= '0';
-      S_MARLATCHofBB <= '0';
-      S_LATCHofPR <= '0';
-      next_state <= F1;
+      next_state <= F0;
   end if;
 
 end process;
@@ -622,15 +522,7 @@ process(current_state)
     S_SDRLATCHofBB <= '1';
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
-    next_state <= END_RET;
-
-  elsif current_state = END_RET then
-    S_LATCHofPR <= '0';
-    S_SDRLATCHofBB <= '0';
-    S_LATCHofALU <= '0';
-    S_OPofALU <= "000";
-    next_state <= F1;
-
+    next_state <= F0;
   end if;
 end process;
 end architecture;
