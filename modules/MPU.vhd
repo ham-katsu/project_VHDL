@@ -4,9 +4,12 @@ use IEEE.std_logic_unsigned.all;
 use ieee.std_logic_arith.all;
 use ieee.numeric_std.all;
 
-library ieee_proposed;
-use ieee_proposed.fixed_float_types.all;
-use ieee_proposed.fixed_pkg.all;
+--library ieee_proposed;
+--use ieee_proposed.fixed_float_types.all;
+--use ieee_proposed.fixed_pkg.all;
+use ieee.fixed_float_types.all;
+use ieee.fixed_pkg.all;
+
 
 entity MPU is 
     port(

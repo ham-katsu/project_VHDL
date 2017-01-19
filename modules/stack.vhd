@@ -19,7 +19,7 @@ entity stack is
     );
 end stack;
 architecture RTL of stack is
-    signal buf_SP: std_logic_vector(15 downto 0) := x"7F";
+    signal buf_SP: std_logic_vector(15 downto 0) := x"007F";
     signal buf_SDR: std_logic_vector(15 downto 0);
     begin
     process(CLK) begin
