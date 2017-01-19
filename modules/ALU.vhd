@@ -23,11 +23,11 @@ component MPU
 );
 end component;
 
-signal MPU_A: std_logic_vector(15 downto 0);
+signal MPU_A: std_logic_vector(15 downto 0) := X"0000";
 signal MPU_OP: std_logic_vector(2 downto 0);
-signal MPU_B: std_logic_vector(15 downto 0);
+signal MPU_B: std_logic_vector(15 downto 0):= X"0000";
 signal MPU_z: std_logic;
-signal out_MPU :std_logic_vector(15 downto 0);
+signal out_MPU :std_logic_vector(15 downto 0):= X"0000";
 
 signal for_zero : std_logic_vector(15 downto 0);
 

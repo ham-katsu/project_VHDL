@@ -1,5 +1,6 @@
 --core
 --todo
+--add state
 
 library ieee;
   use ieee.std_logic_1164.all;
@@ -152,16 +153,16 @@ signal S_OPofALU, S_GR1, S_GR2, S_SEL_A, S_SEL_B, S_OPofGR : std_logic_vector(2 
 signal S_S_INC, S_GRLATCH, S_MDRLATCHofBA, S_IRLATCHofBA, S_GRALATCHofBA,S_GRBLATCHofBB, S_MDRLATCHofBB, S_PRLATCHofBB, S_MARLATCHofBB, S_SPLATCHofBB, S_SDRLATCHofBB,  S_LATCHofALU,S_LATCHofGR, S_ZERO, S_LATCHofPR, S_P_INC, S_S_DCR, S_SP_L, S_SDR_L, S_LATCHofMAR, S_S_MDI, S_LATCHofMDR, S_READ, S_WRITE, S_STACK_SEL, S_CLOCK, S_ADDr, S_ADDadr, S_SUB, S_LAD, S_CALL, S_DIV, S_MLT, S_CPA, S_JZE, S_JMP, S_RET, S_LDr, S_LDadr, S_STR, S_HALT, S_IN_SW, S_AND_logic: std_logic;
 
 begin
-COMP_MDR : MDR port map (CLK, S_S_MDI, S_LATCHofMDR, S_ALUOUT, S_MDR_MEM, S_MEM_MDR, S_BA_MDR, S_BB_MDR);
-COMP_MAR : mar port map (S_BB_MAR, S_MEM_MAR, S_LATCHofMAR, S_ALUOUT, CLK);
-COMP_SP : stack port map (S_MEM_SP, S_MEM_SDR, S_BB_SP, S_BB_SDR, S_S_DCR, S_ALUOUT, S_SP_MEM, S_S_MDI, S_SP_L, S_SDR_L, CLK,S_S_INC);
-COMP_PR : PR port map (S_ALUOUT, S_P_INC, CLK, S_LATCHofPR, S_BB_PR);
-COMP_ALU : ALU port map (S_LATCHofALU,S_ALUOUT,  S_OPofALU, CLK, S_ALU_BA, S_ALU_BB, S_ZERO);
-COMP_MEM : memory port map (S_READ, S_WRITE, S_MEM_SDR, S_MEM_MDR, S_MEM_SP, S_MEM_MAR, S_STACK_SEL, S_MDR_MEM, CLK);
+COMP_MDR : MDR port map (S_CLOCK, S_S_MDI, S_LATCHofMDR, S_ALUOUT, S_MDR_MEM, S_MEM_MDR, S_BA_MDR, S_BB_MDR);
+COMP_MAR : mar port map (S_BB_MAR, S_MEM_MAR, S_LATCHofMAR, S_ALUOUT, S_CLOCK);
+COMP_SP : stack port map (S_MEM_SP, S_MEM_SDR, S_BB_SP, S_BB_SDR, S_S_DCR, S_ALUOUT, S_SP_MEM, S_S_MDI, S_SP_L, S_SDR_L, S_CLOCK,S_S_INC);
+COMP_PR : PR port map (S_ALUOUT, S_P_INC, S_CLOCK, S_LATCHofPR, S_BB_PR);
+COMP_ALU : ALU port map (S_LATCHofALU,S_ALUOUT,  S_OPofALU, S_CLOCK, S_ALU_BA, S_ALU_BB, S_ZERO);
+COMP_MEM : memory port map (S_READ, S_WRITE, S_MEM_SDR, S_MEM_MDR, S_MEM_SP, S_MEM_MAR, S_STACK_SEL, S_MDR_MEM, S_CLOCK);
 COMP_BUS_A : BUS_A port map (S_GRALATCHofBA, S_A_GR, S_MDRLATCHofBA, S_BA_MDR, S_IRLATCHofBA, S_ALU_BB, S_IR_BA);
 COMP_BUS_B : BUS_B port map (S_GRBLATCHofBB, S_B_GR, S_MDRLATCHofBB, S_BB_MDR, S_PRLATCHofBB, S_BB_PR, S_MARLATCHofBB, S_BB_MAR, S_SPLATCHofBB, S_BB_SP, S_SDRLATCHofBB, S_BB_SDR, S_ALU_BB);
 COMP_DECODE : decode port map (S_IR_BA, S_ADDr, S_ADDadr, S_SUB, S_LAD, S_CALL, S_DIV, S_MLT, S_CPA, S_JZE, S_JMP, S_RET, S_LDr, S_LDadr, S_STR, S_HALT, S_AND_logic, S_GR1, S_GR2);
-COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR,S_B_GR,S_GR_IN,S_GR_OUT,S_IN_SW);
+COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,S_CLOCK,S_A_GR,S_B_GR,S_GR_IN,S_GR_OUT,S_IN_SW);
 
 
  process (CLK) begin
@@ -176,7 +177,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
         S_S_INC <= '0'; S_GRALATCHofBA<= '0'; S_MDRLATCHofBA<= '0'; S_IRLATCHofBA<= '0'; S_GRBLATCHofBB<= '0';  S_MDRLATCHofBB<= '0';
         S_PRLATCHofBB<= '0'; S_MARLATCHofBB<= '0'; S_SPLATCHofBB<= '0'; S_SDRLATCHofBB<= '0'; S_LATCHofALU<= '0';
         S_GRLATCH<= '0';S_ZERO<= '0'; S_LATCHofPR<= '0';S_P_INC<= '0';S_S_DCR<= '0'; S_SP_L<= '0'; S_SDR_L<= '0';
-        S_LATCHofMAR<= '0'; S_S_MDI<= '0'; S_LATCHofMDR<= '0'; S_READ<= '0'; S_WRITE<= '0'; S_STACK_SEL<= '0';  S_ADDr<= '0';S_ADDadr<= '0';S_SUB<= '0';
+        S_LATCHofMAR<= '0'; S_S_MDI<= '0'; S_LATCHofMDR<= '0'; S_READ<= '0'; S_WRITE<= '0'; S_STACK_SEL<= '0'; S_CLOCK<= '0'; S_ADDr<= '0';S_ADDadr<= '0';S_SUB<= '0';
         S_LAD<= '0'; S_CALL<= '0'; S_DIV<= '0'; S_MLT<= '0'; S_JZE<= '0'; S_JMP<= '0'; S_RET<= '0'; S_LDr<= '0';
         S_LDadr<= '0'; S_STR<= '0'; S_HALT<= '0'; S_IN_SW<= '0';
         busy <= '1';
@@ -252,8 +253,13 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     busy <= '0';
   end if;
 
+  when others =>
+        null;
+  end case;
+end process;
 
-  when  STR1 =>
+process(current_state) begin
+  if current_state = STR1 then
     S_LATCHofALU <= '1';
     S_MDRLATCHofBA <= '1';
     S_GRBLATCHofBB <= '1';
@@ -261,7 +267,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_LATCHofMAR <= '1';
     next_state <= STR2;
 
-  when   STR2 =>
+  elsif current_state = STR2 then
     S_MDRLATCHofBA <= '0';
     S_GRBLATCHofBB <= '0';
     S_LATCHofMAR <= '0';
@@ -270,15 +276,17 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_LATCHofMDR <= '1';
     next_state <= STR3;
 
-  when   STR3 =>
+  elsif current_state = STR3 then
     S_GRALATCHofBA <= '0';
     S_OPofALU <= "000";
     S_LATCHofMDR <= '0';
     S_WRITE <= '1';
     next_state <= F0;
-  
+  end if;
+end process;
 
-  when   SUBadr1 =>
+process(current_state)begin
+  if current_state = SUBadr1 then
     S_LATCHofALU <= '1';
     S_MDRLATCHofBA <= '1';
     S_GRBLATCHofBB <= '1';
@@ -286,7 +294,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_LATCHofMAR <= '1';
     next_state <= SUBadr2;
 
-  when  SUBadr2 =>
+  elsif current_state = SUBadr2 then
     S_MDRLATCHofBA <= '0';
     S_GRBLATCHofBB <= '0';
     S_OPofALU <= "000";
@@ -296,7 +304,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_LATCHofMDR <= '1';
     next_state <= SUBadr3;
 
-  when   SUBadr3 =>
+  elsif current_state = SUBadr3 then
     S_S_MDI <= '0';
     S_READ <= '0';
     S_LATCHofMDR <= '0';
@@ -305,18 +313,22 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_OPofALU <= "010";
     S_GRLATCH <= '1';
     next_state <= F0;
-  
+  end if;
+end process;
 
- when   SUBr1 =>
+process(current_state)begin
+  if current_state = SUBr1 then
     S_LATCHofALU <= '1';
     S_GRALATCHofBA <= '1';
     S_GRBLATCHofBB <= '1';
     S_OPofALU <= "010";
     S_GRLATCH <= '1';
     next_state <= F0;
- 
+  end if;
+end process;
 
-  when   ADDadr1 =>
+process(current_state)begin
+  if current_state = ADDadr1 then
     S_LATCHofALU <= '1';
     S_MDRLATCHofBA <= '1';
     S_GRBLATCHofBB <= '1';
@@ -324,7 +336,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_LATCHofMAR <= '1';
     next_state <= ADDadr2;
 
- when   ADDadr2=>
+  elsif current_state = ADDadr2 then
     S_MDRLATCHofBA <= '0';
     S_GRBLATCHofBB <= '0';
     S_OPofALU <= "000";
@@ -334,7 +346,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_LATCHofMDR <= '1';
     next_state <= ADDadr3;
 
- when   ADDadr3 =>
+  elsif current_state = ADDadr3 then
     S_S_MDI <= '0';
     S_READ <= '0';
     S_LATCHofMDR <= '0';
@@ -343,25 +355,30 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     S_OPofALU <= "001";
     S_GRLATCH <= '1';
     next_state <= F0;
-  
+  end if;
+end process;
 
- when   ADDr1 =>
+process(current_state)begin
+  if current_state = ADDr1 then
     S_LATCHofALU <= '1';
     S_GRALATCHofBA <= '1';
     S_GRBLATCHofBB <= '1';
     S_OPofALU <= "001";
     S_GRLATCH <= '1';
     next_state <= F0;
- 
+  end if;
+end process;
 
-   when   LDadd1=>
+
+process(current_state) begin
+    if(current_state = LDadd1) then
       S_MDRLATCHofBA <= '1';
       S_LATCHofALU <= '1';
       S_OPofALU <= "101";
       S_LATCHofMAR <= '1';
       next_state <= LDadd2;
 
-   when   LDadd2=>
+    elsif(current_state = LDadd2) then
       S_MDRLATCHofBA <= '0';
       S_LATCHofALU <= '0';
       S_OPofALU <= "000";
@@ -372,7 +389,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
       S_S_MDI <= '1';
       next_state <= LDadd3;
 
-   when   LDadd3=>
+    elsif(current_state = LDadd3)then
       S_READ <= '0';
       S_LATCHofMDR <= '0';
       S_S_MDI <= '0';
@@ -382,17 +399,21 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
       S_MDRLATCHofBB <='1';
       S_GRLATCH <= '1';
       next_state <= F0;
-    
+    end if;
+end process;
 
-   when   LDr1=>
+process(current_state) begin
+    if current_state = LDr1 then
   S_LATCHofALU <= '1';
   S_OPofALU <= "110";
   S_GRLATCH <= '1';
   S_GRBLATCHofBB <= '1';
   next_state <= F0;
-    
+    end if;
+end process;
 
-  when   DIV1=>
+process(current_state) begin
+  if current_state = DIV1 then
   S_LATCHofALU <= '1';
   S_OPofALU <= "100";
   S_GRLATCH <= '1';
@@ -400,7 +421,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
   S_GRBLATCHofBB <= '1';
   next_state <= F0;
 
-   when   MLT1=>
+    elsif current_state = MLT1 then
   S_LATCHofALU <= '1';
   S_OPofALU <= "011";
   S_GRLATCH <= '1';
@@ -408,8 +429,11 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
   S_GRBLATCHofBB <= '1';
   next_state <= F0;
 
-    
-when  AND1=>
+    end if;
+end process;
+
+process(current_state) begin
+  if current_state = AND1 then
     S_LATCHofALU <= '1';
     S_OPofALU <= "111";
     S_GRLATCH <= '1';
@@ -418,7 +442,7 @@ when  AND1=>
     next_state <= F0;
 
 
-  when   LAD1=>
+  elsif current_state = LAD1 then
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     S_LATCHofMDR <= '1';
@@ -426,7 +450,7 @@ when  AND1=>
     next_state <= F0;
 
 
-  when   JMP1=>
+  elsif current_state = JMP1 then
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     S_LATCHofPR <= '1';
@@ -434,22 +458,25 @@ when  AND1=>
     next_state <= F0;
 
 
- when   JZE=>
+  elsif current_state = JZE then
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     S_LATCHofPR <= '1';
     S_GRLATCH <= '1';
     next_state <= F0;
-  
+  end if;
+end process;
 
- when   CALL1=>
+process(current_state)
+  begin
+    if current_state = CALL1 then
       S_MDRLATCHofBA <= '1';
       S_LATCHofALU <= '1';
       S_OPofALU <= "101";
       S_LATCHofMAR <= '1';
       next_state <= CALL2;
 
-    when   CALL2 =>
+    elsif current_state= CALL2 then
       S_MDRLATCHofBA <= '0';
       S_LATCHofMAR <= '0';
 
@@ -461,7 +488,7 @@ when  AND1=>
 
       next_state <= CALL3;
 
-   when   CALL3=>
+    elsif current_state = CALL3 then
       S_S_DCR <= '0';
       S_PRLATCHofBB <= '0';
       S_SDR_L <= '0';
@@ -471,16 +498,19 @@ when  AND1=>
       S_MARLATCHofBB <= '1';
       S_LATCHofPR <= '1';
       next_state <= F0;
-  
+  end if;
 
- when  RET1 =>
+end process;
+
+process(current_state) begin
+  if current_state = RET1 then
     S_READ <= '1';
     S_STACK_SEL <= '1';
     S_SDR_L <= '1';
     S_S_INC <= '1';
     next_state <= RET2;
 
-  when  RET2 =>
+  elsif current_state=RET2 then
     S_READ <= '0';
     S_STACK_SEL <= '0';
     S_SDR_L <= '0';
@@ -491,6 +521,6 @@ when  AND1=>
     S_LATCHofALU <= '1';
     S_OPofALU <= "110";
     next_state <= F0;
-end case;
+  end if;
 end process;
 end RTL;
