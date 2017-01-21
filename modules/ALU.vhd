@@ -38,10 +38,10 @@ begin
     
 
 	
-    process(CLK)
+    process(A_IN,B_IN,latch,OP)
 	variable ans : std_logic_vector(15 downto 0);
     begin
-    if(CLK'event and CLK = '1') then
+    --if(CLK'event and CLK = '1') then
 	if (latch = '1') then
           
 	    case OP is
@@ -69,7 +69,7 @@ begin
     	end if;
 	
 	end if;
-    end if;
+    --end if;
     end process;
 
  

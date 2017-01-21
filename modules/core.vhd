@@ -1,5 +1,4 @@
 --core
---todo
 
 library ieee;
   use ieee.std_logic_1164.all;
@@ -147,8 +146,8 @@ end component;
 type STATE_t is (F0,F1, F2, F3, exc, STR1, STR2, STR3, SUBadr1, SUBadr2, SUBadr3, ADDadr1, ADDadr2, ADDadr3, SUBr1, ADDr1,  LDadd1, LDadd2, LDadd3,LDr1,DIV1,MLT1,AND1,LAD1,JMP1,JZE,CALL1,CALL2,CALL3,RET1,RET2);
 signal current_state : STATE_t;
 signal next_state : STATE_t;
-signal S_GR_IN,S_GR_OUT,S_ALUOUT, S_A_GR, S_B_GR, S_ALU_BA, S_ALU_BB, S_IR_BA, S_BB_PR, S_BB_MAR, S_MEM_MAR, S_MEM_MDR, S_BA_MDR, S_BB_MDR, S_MDR_MEM, S_SP_MEM, S_BB_SP, S_BB_SDR, S_MEM_SP, S_MEM_SDR : std_logic_vector(15 downto 0);
-signal S_OPofALU, S_GR1, S_GR2, S_SEL_A, S_SEL_B, S_OPofGR : std_logic_vector(2 downto 0);
+signal S_GR_IN,S_GR_OUT,S_ALUOUT, S_A_GR, S_B_GR, S_ALU_BA, S_ALU_BB, S_IR_BA, S_BB_PR, S_BB_MAR, S_MEM_MAR, S_MEM_MDR, S_BA_MDR, S_BB_MDR, S_MDR_MEM, S_SP_MEM, S_BB_SP, S_BB_SDR, S_MEM_SP, S_MEM_SDR : std_logic_vector(15 downto 0) := X"0000";
+signal S_OPofALU, S_SEL_A, S_SEL_B, S_OPofGR : std_logic_vector(2 downto 0);
 signal S_S_INC, S_GRLATCH, S_MDRLATCHofBA, S_IRLATCHofBA, S_GRALATCHofBA,S_GRBLATCHofBB, S_MDRLATCHofBB, S_PRLATCHofBB, S_MARLATCHofBB, S_SPLATCHofBB, S_SDRLATCHofBB,  S_LATCHofALU,S_LATCHofGR, S_ZERO, S_LATCHofPR, S_P_INC, S_S_DCR, S_SP_L, S_SDR_L, S_LATCHofMAR, S_S_MDI, S_LATCHofMDR, S_READ, S_WRITE, S_STACK_SEL, S_CLOCK, S_ADDr, S_ADDadr, S_SUB, S_LAD, S_CALL, S_DIV, S_MLT, S_CPA, S_JZE, S_JMP, S_RET, S_LDr, S_LDadr, S_STR, S_HALT, S_IN_SW, S_AND_logic: std_logic;
 
 begin
@@ -158,9 +157,9 @@ COMP_SP : stack port map (S_MEM_SP, S_MEM_SDR, S_BB_SP, S_BB_SDR, S_S_DCR, S_ALU
 COMP_PR : PR port map (S_ALUOUT, S_P_INC, CLK, S_LATCHofPR, S_BB_PR);
 COMP_ALU : ALU port map (S_LATCHofALU,S_ALUOUT,  S_OPofALU, CLK, S_ALU_BA, S_ALU_BB, S_ZERO);
 COMP_MEM : memory port map (S_READ, S_WRITE, S_MEM_SDR, S_MEM_MDR, S_MEM_SP, S_MEM_MAR, S_STACK_SEL, S_MDR_MEM, CLK);
-COMP_BUS_A : BUS_A port map (S_GRALATCHofBA, S_A_GR, S_MDRLATCHofBA, S_BA_MDR, S_IRLATCHofBA, S_ALU_BB, S_IR_BA);
+COMP_BUS_A : BUS_A port map (S_GRALATCHofBA, S_A_GR, S_MDRLATCHofBA, S_BA_MDR, S_IRLATCHofBA, S_ALU_BA, S_IR_BA);
 COMP_BUS_B : BUS_B port map (S_GRBLATCHofBB, S_B_GR, S_MDRLATCHofBB, S_BB_MDR, S_PRLATCHofBB, S_BB_PR, S_MARLATCHofBB, S_BB_MAR, S_SPLATCHofBB, S_BB_SP, S_SDRLATCHofBB, S_BB_SDR, S_ALU_BB);
-COMP_DECODE : decode port map (S_IR_BA, S_ADDr, S_ADDadr, S_SUB, S_LAD, S_CALL, S_DIV, S_MLT, S_CPA, S_JZE, S_JMP, S_RET, S_LDr, S_LDadr, S_STR, S_HALT, S_AND_logic, S_GR1, S_GR2);
+COMP_DECODE : decode port map (S_IR_BA, S_ADDr, S_ADDadr, S_SUB, S_LAD, S_CALL, S_DIV, S_MLT, S_CPA, S_JZE, S_JMP, S_RET, S_LDr, S_LDadr, S_STR, S_HALT, S_AND_logic, S_SEL_A,S_SEL_B);
 COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR,S_B_GR,S_GR_IN,S_GR_OUT,S_IN_SW);
 
 
@@ -178,7 +177,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
         S_GRLATCH<= '0';S_ZERO<= '0'; S_LATCHofPR<= '0';S_P_INC<= '0';S_S_DCR<= '0'; S_SP_L<= '0'; S_SDR_L<= '0';
         S_LATCHofMAR<= '0'; S_S_MDI<= '0'; S_LATCHofMDR<= '0'; S_READ<= '0'; S_WRITE<= '0'; S_STACK_SEL<= '0';  S_ADDr<= '0';S_ADDadr<= '0';S_SUB<= '0';
         S_LAD<= '0'; S_CALL<= '0'; S_DIV<= '0'; S_MLT<= '0'; S_JZE<= '0'; S_JMP<= '0'; S_RET<= '0'; S_LDr<= '0';
-        S_LDadr<= '0'; S_STR<= '0'; S_HALT<= '0'; S_IN_SW<= '0';
+        S_LDadr<= '0'; S_STR<= '0'; S_HALT<= '0'; S_IN_SW<= '0'; S_LATCHofGR <='0';
         busy <= '1';
         next_state <= F1;
 
@@ -197,8 +196,9 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
         next_state <= F3;
 
       when F3 =>
-        S_OPofALU <= "000";
         S_P_INC <= '0';
+	S_IRLATCHofBA <= '1';
+	S_MDRLATCHofBA <='1';
         next_state <= exc;
 
       when exc =>
@@ -207,6 +207,8 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
         S_S_MDI <= '0';
         S_LATCHofALU <= '0';
         S_LATCHofMAR <= '0';
+	S_IRLATCHofBA <= '0';
+	S_MDRLATCHofBA <='0';
   if S_ADDr = '1' then
     next_state <= ADDr1;
   elsif S_STR = '1' then
