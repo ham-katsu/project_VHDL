@@ -164,7 +164,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
 
 
  process (CLK) begin
-    if (CLK'event and CLK = '0') then
+    if (CLK'event and CLK = '1') then
       current_state <= next_state;
     end if;
   end process;
@@ -175,9 +175,8 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
         S_S_INC <= '0'; S_GRALATCHofBA<= '0'; S_MDRLATCHofBA<= '0'; S_IRLATCHofBA<= '0'; S_GRBLATCHofBB<= '0';  S_MDRLATCHofBB<= '0';
         S_PRLATCHofBB<= '0'; S_MARLATCHofBB<= '0'; S_SPLATCHofBB<= '0'; S_SDRLATCHofBB<= '0'; S_LATCHofALU<= '0';
         S_GRLATCH<= '0';S_ZERO<= '0'; S_LATCHofPR<= '0';S_P_INC<= '0';S_S_DCR<= '0'; S_SP_L<= '0'; S_SDR_L<= '0';
-        S_LATCHofMAR<= '0'; S_S_MDI<= '0'; S_LATCHofMDR<= '0'; S_READ<= '0'; S_WRITE<= '0'; S_STACK_SEL<= '0';  S_ADDr<= '0';S_ADDadr<= '0';S_SUB<= '0';
-        S_LAD<= '0'; S_CALL<= '0'; S_DIV<= '0'; S_MLT<= '0'; S_JZE<= '0'; S_JMP<= '0'; S_RET<= '0'; S_LDr<= '0';
-        S_LDadr<= '0'; S_STR<= '0'; S_HALT<= '0'; S_IN_SW<= '0'; S_LATCHofGR <='0';
+        S_LATCHofMAR<= '0'; S_S_MDI<= '0'; S_LATCHofMDR<= '0'; S_READ<= '0'; S_WRITE<= '0'; S_STACK_SEL<= '0'; 
+	 S_IN_SW<= '0'; S_LATCHofGR <='0';
         busy <= '1';
         next_state <= F1;
 
