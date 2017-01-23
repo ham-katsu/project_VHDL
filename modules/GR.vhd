@@ -17,7 +17,7 @@ entity GR is
 end GR;
 
 architecture RTL of GR is
-signal gr0 : std_logic_vector(15 downto 0);
+signal gr0 : std_logic_vector(15 downto 0):="0000000011001001";
 signal gr1 : std_logic_vector(15 downto 0);
 signal gr2 : std_logic_vector(15 downto 0);
 signal gr3 : std_logic_vector(15 downto 0);

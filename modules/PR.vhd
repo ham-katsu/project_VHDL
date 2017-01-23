@@ -27,7 +27,7 @@ begin
               p <= p + 1;
               output <= p + 1;
             elsif((p_inc = '0') and (latch = '1')) then
-              p <= input + 1;
+              p <= input;
               output <= input;
             else
               output <= p;

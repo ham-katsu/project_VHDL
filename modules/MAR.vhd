@@ -19,8 +19,8 @@ architecture RTL of mar is
        if (CLK = '1') then
            if(MARlatch = '1') then
               buf_MAR <= busC_out;
-           else
-              buf_MAR <= "0000000000000000";
+           --else
+              --buf_MAR <= "0000000000000000";
            end if;
        end if;
    end process;
