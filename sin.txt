@@ -1,7 +1,5 @@
 ## a = sin(x) -> a := GR8, x:=GR0
-calc_sine	START
-
-		LAD	GR5,0
+calc_sine	LAD	GR5,0
 		LAD	GR7,1
 		ADD	GR5,GR0
 
@@ -19,8 +17,7 @@ calc_sine	START
 		CALL 	n_jyou
 		MLT	GR7,GR2
 		ADD     GR5,GR7
-						
-		END
+		HALT
 
 
 ## a = n! -> a := GR2, n := GR4
