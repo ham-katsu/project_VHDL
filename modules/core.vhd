@@ -466,33 +466,36 @@ when  AND1=>
   
 
  when   CALL1=>
-      S_MDRLATCHofBA <= '1';
-      S_LATCHofALU <= '1';
-      S_OPofALU <= "101";
-      S_LATCHofMAR <= '1';
-      next_state <= CALL2;
-
-    when   CALL2 =>
-      S_MDRLATCHofBA <= '0';
+      --S_MDRLATCHofBA <= '1';
+      --S_LATCHofALU <= '1';
+      --S_OPofALU <= "101";
+      --S_LATCHofMAR <= '1';
+	S_MDRLATCHofBA <= '0';
       S_LATCHofMAR <= '0';
-
+      S_LATCHofALU <= '1';
       S_S_DCR <= '1';
       S_PRLATCHofBB <= '1';
       S_OPofALU <= "110";
       S_SDR_L <= '1';
       S_S_MDI <= '0';
+      next_state <= CALL2;
+
+    when   CALL2 =>
+      S_S_DCR <= '0';
+      S_PRLATCHofBB <= '0';
+      S_SDR_L <= '0';
+      S_STACK_SEL <= '1';
+      S_MDRLATCHofBB <= '1';
+      S_LATCHofPR <= '1';
 
       next_state <= CALL3;
 
    when   CALL3=>
-      S_S_DCR <= '0';
-      S_PRLATCHofBB <= '0';
-      S_SDR_L <= '0';
-
-      S_STACK_SEL <= '1';
+     
+     
       S_WRITE <= '1';
-      S_MARLATCHofBB <= '1';
-      S_LATCHofPR <= '1';
+      --S_MARLATCHofBB <= '1';
+      
       next_state <= F0;
   
 
