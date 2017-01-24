@@ -32,14 +32,13 @@ begin
 	end if;
     end process;
 
-    process(q, IR_latch)
+    process(q,IR_latch)
 	begin
 	    if (IR_latch = '1') then
 		to_IR <= q;
 		BUS_A_OUT <= "0000000000000000";
 	    else
 		BUS_A_OUT <= q;
-		to_IR <= "0000000000000000";
 	    end if;
     end process;
 end RTL;

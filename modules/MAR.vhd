@@ -15,12 +15,12 @@ end mar;
 architecture RTL of mar is
    signal buf_MAR: std_logic_vector(15 downto 0);
    begin
-   process(CLK) begin
-       if (CLK'event and CLK = '1') then
+   process(CLK,MARlatch,busC_out) begin
+       if (CLK = '1') then
            if(MARlatch = '1') then
               buf_MAR <= busC_out;
-           else
-              buf_MAR <= "0000000000000000";
+           --else
+              --buf_MAR <= "0000000000000000";
            end if;
        end if;
    end process;

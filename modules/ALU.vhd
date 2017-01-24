@@ -38,10 +38,10 @@ begin
     
 
 	
-    process(CLK)
+    process(A_IN,B_IN,latch,OP)
 	variable ans : std_logic_vector(15 downto 0);
     begin
-    if(CLK'event and CLK = '1') then
+    --if(CLK'event and CLK = '1') then
 	if (latch = '1') then
           
 	    case OP is
@@ -54,7 +54,10 @@ begin
 		when "110" =>
 		    ans := B_IN;
 		when "111" =>
-		    ans := A_IN and B_IN;
+		    ans := A_IN - B_IN;
+		    if ans = X"0000" then
+			zero <= '1';
+		    end if;
 		when "000" =>
 		    ans := X"0000";
 	        when others =>
@@ -62,14 +65,10 @@ begin
         end case;
 	BUS_C_OUT <= ans;
 	
-	if (ans = "0000000000000000") then
-	    zero <= '1';
-	else
-	    zero <= '0';
-    	end if;
+	
 	
 	end if;
-    end if;
+    --end if;
     end process;
 
  

@@ -22,15 +22,20 @@ architecture RTL of stack is
     signal buf_SP: std_logic_vector(15 downto 0) := x"007F";
     signal buf_SDR: std_logic_vector(15 downto 0);
     begin
-    process(CLK) begin
-        if (CLK'event and CLK = '1') then
+    process(CLK,BUS_C,memory_out,S_sdi) begin
+        if (CLK = '1') then
+		if (CLK'event and S_dcr = '1') then
+			buf_SP <= buf_SP - 1;
+		elsif (CLK'event and S_inc = '1') then
+			buf_SP <= buf_SP + 1;
+		end if;
 	-- stack pointer
-	    if(S_dcr = '1') then
-		buf_SP <= buf_SP - 1;
-	    elsif (SP_latch  = '1') then
+	    --if(S_dcr = '1') then
+		--buf_SP <= buf_SP - 1;
+	    if (SP_latch  = '1') then
 		buf_SP <= BUS_C;
-	    elsif (s_inc = '1') then
-		buf_SP <= buf_SP + 1;
+	    --elsif (s_inc = '1') then
+		--buf_SP <= buf_SP + 1;
 	    end if;
 
 	-- stack
@@ -43,6 +48,7 @@ architecture RTL of stack is
 	    end if;
 	end if;
     end process;
+
 
     SP_o_m <= buf_SP;
     SP_o_B <= buf_SP;

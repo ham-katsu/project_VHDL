@@ -10,8 +10,8 @@ end MDR;
 architecture RTL of MDR is
 	signal S : std_logic_vector(15 downto 0);
 	begin
-	process (clk) begin
-	if (clk'event and clk='1') then
+	process (clk,s_mdi,lat,MDBus,BusC_out) begin
+	if (clk='1') then
 		if (S_mdi='1' and lat='1') then
 			S <= MDBus;
 		elsif (S_mdi='0' and lat='1') then
@@ -20,9 +20,10 @@ architecture RTL of MDR is
 	end if;
 
 	end process;
-		
+	
+	process(S) begin
 	MDRoutA <= S;
 	MDRoutB <= S;
 	MDR_out <= S;
-
+	end process;
 end RTL;
