@@ -269,7 +269,7 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
     --next_state <= AND1;
 
   elsif S_SUB = '1' then
-    next_state <= SUBadr1;
+    next_state <= SUBr1;
   elsif S_CPA = '1' then
     next_state <= CPA1;
 

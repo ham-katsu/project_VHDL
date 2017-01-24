@@ -44,7 +44,7 @@ begin
 		when "001" =>
 		    BUS_C_OUT <= A_IN + B_IN;
 		when "010" =>
-		    ans := A_IN - B_IN;
+		    BUS_C_OUT <= A_IN - B_IN;
 		when "101" => 
 		    BUS_C_OUT <= A_IN;
 		when "110" =>
