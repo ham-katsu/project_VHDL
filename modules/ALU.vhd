@@ -29,7 +29,9 @@ signal MPU_B: std_logic_vector(15 downto 0):= X"0000";
 signal MPU_z: std_logic;
 signal out_MPU :std_logic_vector(15 downto 0):= X"0000";
 
-signal for_zero : std_logic_vector(15 downto 0);
+
+
+
 
 
 begin
@@ -55,16 +57,18 @@ begin
 		    ans := B_IN;
 		when "111" =>
 		    ans := A_IN - B_IN;
-		    if ans = X"0000" then
-			zero <= '1';
-		    end if;
+		    if (ans = "0000000000000000") then
+			   zero <= '1';
+		    else
+	    			zero <= '0';
+    		    end if;
 		when "000" =>
 		    ans := X"0000";
 	        when others =>
 		    ans := out_MPU;
         end case;
 	BUS_C_OUT <= ans;
-	
+
 	
 	
 	end if;

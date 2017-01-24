@@ -75,9 +75,9 @@ architecture RTL of decode is
 				JMP <= '1';
 			when "01100011" =>
 				RET <= '1';
-			when "00100001" =>
+			when "00100100" =>
 				LDr <= '1';
-			when "00100100"  =>
+			when "00100001"  =>
 				LDadr <= '1';
 			when  "00100010" =>
 				STR <= '1';
