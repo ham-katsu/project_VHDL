@@ -1,6 +1,6 @@
 import sys
 KEYWORDS =(
-        "ADD"
+        "ADD",
         "SUB",
         "LAD",
         "CALL",
