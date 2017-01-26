@@ -98,7 +98,7 @@ if __name__ == '__main__':
         if not word.isdigit():
             try:
                 addr_dec = labels[word]
-                addr_hex = hex(addr_dec)[3:].zfill(4)
+                addr_hex = hex(addr_dec)[2:].zfill(4)
                 result[i] = addr_hex
             except KeyError as e:
                 print("cant convert label to addres!\n")
