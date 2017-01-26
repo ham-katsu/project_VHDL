@@ -1,18 +1,18 @@
 START   LAD $5,#0000
         LAD $7,#0100
-        ADD $5,$0
-        LAD $4,#0300
+        ADD $5,$7
+        LAD $4,#0200
         CALL KAIJYO
         DIV $7,$2
-        LAD $1,#0300
+        LAD $1,#0200
         CALL N_JYO
         MLT $7,$2
         SUB $5,$7
-        LAD $4,#0500
+        LAD $4,#0400
         LAD $7,#0100
         CALL KAIJYO
         DIV $7,$2
-        LAD $1,#0500
+        LAD $1,#0400
         CALL N_JYO
         MLT $7,$2
         ADD $5,$7
