@@ -281,8 +281,8 @@ COMP_GR : GR port map (S_GRLATCH,S_ALUOUT ,S_OPofGR ,S_SEL_A,S_SEL_B ,CLK,S_A_GR
   when  STR1 =>
     S_LATCHofALU <= '1';
     S_MDRLATCHofBA <= '1';
-    S_GRBLATCHofBB <= '1';
-    S_OPofALU <= "001";
+   
+    S_OPofALU <= "101";
     S_LATCHofMAR <= '1';
     next_state <= STR2;
 

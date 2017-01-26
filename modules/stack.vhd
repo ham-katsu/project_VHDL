@@ -24,9 +24,9 @@ architecture RTL of stack is
     begin
     process(CLK,BUS_C,memory_out,S_sdi) begin
         if (CLK = '1') then
-		if (CLK'event and S_dcr = '1') then
+		if (CLK'event and CLK = '1' and S_dcr = '1') then
 			buf_SP <= buf_SP - 1;
-		elsif (CLK'event and S_inc = '1') then
+		elsif (CLK'event and CLK = '1' and S_inc = '1') then
 			buf_SP <= buf_SP + 1;
 		end if;
 	-- stack pointer
