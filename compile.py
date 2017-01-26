@@ -48,7 +48,7 @@ if __name__ == '__main__':
         #pass
     result = []
     labels ={"START":0,}
-    print(pgm)
+    #print(pgm)
     current_adr = 0
     i = 0
     token_num = len(pgm)
@@ -114,3 +114,4 @@ if __name__ == '__main__':
     f = open("out.txt",'w')
     f.write(result_text)
     f.close()
+    print("コンパイルおっけー😎 😎 😎 \n")
